@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		AF240CC51C578DC000592510 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF240CC41C578DC000592510 /* AppDelegate.swift */; };
-		AF240CC71C578DC000592510 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF240CC61C578DC000592510 /* ViewController.swift */; };
 		AF240CCA1C578DC000592510 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF240CC81C578DC000592510 /* Main.storyboard */; };
 		AF240CCC1C578DC000592510 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF240CCB1C578DC000592510 /* Assets.xcassets */; };
 		AF240CCF1C578DC000592510 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF240CCD1C578DC000592510 /* LaunchScreen.storyboard */; };
 		AF240CDA1C578DC000592510 /* On_the_MapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF240CD91C578DC000592510 /* On_the_MapTests.swift */; };
 		AF240CE51C578DC000592510 /* On_the_MapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF240CE41C578DC000592510 /* On_the_MapUITests.swift */; };
+		AF240CF51C578F1800592510 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF240CF41C578F1800592510 /* MapViewController.swift */; };
+		AF4A984F1C5E200100BC058C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4A984E1C5E200100BC058C /* BaseViewController.swift */; };
+		AFA1F8341C5DE03200CC6DD3 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA1F8331C5DE03200CC6DD3 /* LoginTextField.swift */; };
+		AFA1F8391C5DE20400CC6DD3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA1F8381C5DE20400CC6DD3 /* User.swift */; };
+		AFC09EF41C58B30800787403 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC09EF31C58B30800787403 /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +40,6 @@
 /* Begin PBXFileReference section */
 		AF240CC11C578DC000592510 /* On the Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On the Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF240CC41C578DC000592510 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AF240CC61C578DC000592510 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		AF240CC91C578DC000592510 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		AF240CCB1C578DC000592510 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF240CCE1C578DC000592510 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -47,6 +50,11 @@
 		AF240CE01C578DC000592510 /* On the MapUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "On the MapUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF240CE41C578DC000592510 /* On_the_MapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = On_the_MapUITests.swift; sourceTree = "<group>"; };
 		AF240CE61C578DC000592510 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AF240CF41C578F1800592510 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		AF4A984E1C5E200100BC058C /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		AFA1F8331C5DE03200CC6DD3 /* LoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
+		AFA1F8381C5DE20400CC6DD3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		AFC09EF31C58B30800787403 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,8 +105,10 @@
 		AF240CC31C578DC000592510 /* On the Map */ = {
 			isa = PBXGroup;
 			children = (
+				AFA1F83B1C5DF52500CC6DD3 /* Config */,
+				AFA1F83A1C5DF51100CC6DD3 /* Controllers */,
+				AFA1F8351C5DE16300CC6DD3 /* Models */,
 				AF240CC41C578DC000592510 /* AppDelegate.swift */,
-				AF240CC61C578DC000592510 /* ViewController.swift */,
 				AF240CC81C578DC000592510 /* Main.storyboard */,
 				AF240CCB1C578DC000592510 /* Assets.xcassets */,
 				AF240CCD1C578DC000592510 /* LaunchScreen.storyboard */,
@@ -123,6 +133,32 @@
 				AF240CE61C578DC000592510 /* Info.plist */,
 			);
 			path = "On the MapUITests";
+			sourceTree = "<group>";
+		};
+		AFA1F8351C5DE16300CC6DD3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AFA1F8381C5DE20400CC6DD3 /* User.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		AFA1F83A1C5DF51100CC6DD3 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				AF240CF41C578F1800592510 /* MapViewController.swift */,
+				AFC09EF31C58B30800787403 /* LoginViewController.swift */,
+				AF4A984E1C5E200100BC058C /* BaseViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		AFA1F83B1C5DF52500CC6DD3 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				AFA1F8331C5DE03200CC6DD3 /* LoginTextField.swift */,
+			);
+			name = Config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,8 +295,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AF240CC71C578DC000592510 /* ViewController.swift in Sources */,
+				AFC09EF41C58B30800787403 /* LoginViewController.swift in Sources */,
+				AFA1F8341C5DE03200CC6DD3 /* LoginTextField.swift in Sources */,
+				AF240CF51C578F1800592510 /* MapViewController.swift in Sources */,
+				AFA1F8391C5DE20400CC6DD3 /* User.swift in Sources */,
 				AF240CC51C578DC000592510 /* AppDelegate.swift in Sources */,
+				AF4A984F1C5E200100BC058C /* BaseViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +527,7 @@
 				AF240CEB1C578DC000592510 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AF240CEC1C578DC000592510 /* Build configuration list for PBXNativeTarget "On the MapTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +536,7 @@
 				AF240CEE1C578DC000592510 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AF240CEF1C578DC000592510 /* Build configuration list for PBXNativeTarget "On the MapUITests" */ = {
 			isa = XCConfigurationList;
@@ -503,6 +545,7 @@
 				AF240CF11C578DC000592510 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
