@@ -1,6 +1,6 @@
 # On-the-Map
 
-The IOS application for the Udacity iOS nanodegree. Use Udacity, Facebook, and Parse APIs to populate table and map data.
+The IOS Application for the Udacity iOS nanodegree. Use Udacity, Facebook, and Parse APIs to populate table and map data.
 
 On The Map is a social collaboration app in which easy person can tell others in the app where they are and shares a hyperlink that directs users to a page that says more about that person.
 
