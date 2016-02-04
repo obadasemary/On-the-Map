@@ -40,18 +40,33 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
     }
     
     @IBAction func loginButtonTouch(sender: UIButton) {
+        
         setFormState(true)
-        showActivityIndicator()
-        if let username = usernameTextField.text, password = passwordTextField.text {
-            User.logIn(username, password: password, didComplete: { (success, errorMessage) -> Void in
-                self.setFormState(false, errorMessage: errorMessage)
-                if success {
+        self.showActivityIndicator()
+        
+        //hide keyboard
+        self.view.endEditing(true)
+        
+        //request to login user
+        UdacityClient.sharedInstance().userLogin(usernameTextField.text!, password: passwordTextField.text!) { (result, error) -> Void in
+            
+            if error != nil {
+                dispatch_async(dispatch_get_main_queue(), {
+                    UdacityClient.sharedInstance().showAlert(error!, viewController: self)
+                    self.hideActivityIndicator()
+                })
+            }
+            else {
+                // show map tab view
+                let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                appDelegate.studentKey = result!
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.hideActivityIndicator()
                     self.setFormState(false)
                     self.performSegueWithIdentifier("showTabs", sender: self)
-                }
-            })
+                })
+            }
         }
-        hideActivityIndicator()
     }
     
     @IBAction func signUpButtonTouch(sender: UIButton) {

@@ -6,19 +6,16 @@
 //  Copyright © 2016 Abdelrahman Mohamed. All rights reserved.
 //
 
-import Foundation
-
 extension UdacityClient {
     
     // MARK: - Constants
     struct Constants {
-        // BaseURL
-        static let UdacityBaseURL: String = "https://www.udacity.com/api/"
-        static let ParseBaseURL: String = "https://api.parse.com/1/classes/StudentLocation"
-        
         // Parse app id and api key
         static let parseAppId: String = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
         static let parseApiKey: String = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
+        
+        static let UdacityBaseURL: String = "https://www.udacity.com/api/"
+        static let ParseBaseURL: String = "https://api.parse.com/1/classes/StudentLocation"
     }
     
     // MARK: - Request to server
@@ -29,7 +26,7 @@ extension UdacityClient {
     
     // MARK: - Methods
     struct Methods {
-        // get udacity session 
+        // get udacity session
         static let CreateSession : String = "session"
         // get public users data
         static let Users : String = "users/"
@@ -54,6 +51,7 @@ extension UdacityClient {
         static let Longitude = "longitude"
     }
     
+    
     // MARK: - JSON Response Keys
     struct JSONResponseKeys {
         static let Error = "error"
@@ -65,5 +63,6 @@ extension UdacityClient {
         static let Latitude = "latitude"
         static let Longitude = "longitude"
         static let MediaUrl = "mediaURL"
+        
     }
 }

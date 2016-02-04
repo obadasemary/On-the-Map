@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-class UdacityClient: NSObject {
+class UdacityClient : NSObject {
     
     /* Shared session */
-    var session : NSURLSession
+    var session: NSURLSession
     
     override init() {
         session = NSURLSession.sharedSession()
@@ -20,11 +20,12 @@ class UdacityClient: NSObject {
     }
     
     // MARK: - GET
-    func taskForGETMethod(server: String, method: String, parameters: [String : AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void ) -> NSURLSessionDataTask {
-
+    
+    func taskForGETMethod(server: String, method: String, parameters: [String : AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+        
         /* Set the parameters */
         let mutableParameters = parameters
-
+        
         /* Set server base url */
         var baseUrl : String = ""
         if (server == RequestToServer.udacity) {
@@ -45,53 +46,41 @@ class UdacityClient: NSObject {
         }
         
         /* Make the request */
-        let task = session.dataTaskWithRequest(request) { (data, response, downloadError) -> Void in
+        let task = session.dataTaskWithRequest(request) {data, response, downloadError in
             
-            guard (downloadError != nil) else {
+            /* Parse the data and use the data (happens in completion handler) */
+            if downloadError != nil {
                 completionHandler(result: nil, error: downloadError)
-                return
-            }
-            
-            /* GUARD: Did we get a successful 2XX response? */
-            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-                if let response = response as? NSHTTPURLResponse {
-                    print("Your request returned an invalid response! Status code: \(response.statusCode)!")
-                } else if let response = response {
-                    print("Your request returned an invalid response! Response: \(response)!")
-                } else {
-                    print("Your request returned an invalid response!")
-                }
-                return
-            }
-            
-            guard let data = data else {
-                print("No data was returned by the requset!")
-                return
-            }
-            
-            var newData : NSData?
-            newData = nil
-            
-            if (server == RequestToServer.udacity) {
-                newData = data.subdataWithRange(NSMakeRange(5, data.length - 5))
-            }
-            
-            if newData != nil {
-                UdacityClient.parseJSONWithCompletionHandler(newData!, completionHandler: completionHandler)
             } else {
-                UdacityClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
+                var newData: NSData?
+                newData = nil
+                if (server == RequestToServer.udacity) {
+                    newData = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
+                }
+                if newData != nil {
+                    UdacityClient.parseJSONWithCompletionHandler(newData!, completionHandler: completionHandler)
+                }
+                else {
+                    UdacityClient.parseJSONWithCompletionHandler(data!, completionHandler: completionHandler)
+                }
             }
         }
         
+        /* Start the request */
         task.resume()
+        
         return task
     }
     
-    func taskForPOSTMethod(server: String, method: String, parameters: [String : AnyObject], jsonbody: [String : AnyObject], subdata: Int, completionHandler: (result: AnyObject!, error: NSError?) -> Void ) -> NSURLSessionDataTask {
+    // MARK: - POST
+    
+    func taskForPOSTMethod(server: String, method: String, parameters: [String : AnyObject], jsonBody: [String:AnyObject], subdata: Int, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
+        /* Set the parameters */
         let mutableParameters = parameters
         
-        var baseUrl = ""
+        /* Set server base url */
+        var baseUrl : String = ""
         if (server == RequestToServer.udacity) {
             baseUrl = Constants.UdacityBaseURL
         } else if (server == RequestToServer.parse) {
@@ -102,12 +91,14 @@ class UdacityClient: NSObject {
         let urlString = baseUrl + method + UdacityClient.escapedParameters(mutableParameters)
         let url = NSURL(string: urlString)!
         let request = NSMutableURLRequest(URL: url)
+        var jsonifyError: NSError? = nil
         request.HTTPMethod = "POST"
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         do {
-            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(jsonbody, options: [])
-        } catch {
+            request.HTTPBody = try NSJSONSerialization.dataWithJSONObject(jsonBody, options: [])
+        } catch let error as NSError {
+            jsonifyError = error
             request.HTTPBody = nil
         }
         
@@ -118,50 +109,35 @@ class UdacityClient: NSObject {
             request.addValue("application/json", forHTTPHeaderField: "Accept")
         }
         
-        let task = session.dataTaskWithRequest(request) { (data, response, downloadError) -> Void in
+        /* Make the request */
+        let task = session.dataTaskWithRequest(request) {data, response, downloadError in
             
-            guard (downloadError != nil) else {
+            /* Parse the data and use the data (happens in completion handler) */
+            if downloadError != nil {
                 completionHandler(result: nil, error: downloadError)
-                return
-            }
-            
-            /* GUARD: Did we get a successful 2XX response? */
-            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-                if let response = response as? NSHTTPURLResponse {
-                    print("Your request returned an invalid response! Status code: \(response.statusCode)!")
-                } else if let response = response {
-                    print("Your request returned an invalid response! Response: \(response)!")
-                } else {
-                    print("Your request returned an invalid response!")
-                }
-                return
-            }
-            
-            guard let data = data else {
-                print("No data was returned by the requset!")
-                return
-            }
-            
-            var newData : NSData?
-            newData = nil
-            
-            if subdata > 0 {
-                newData = data.subdataWithRange(NSMakeRange(subdata, data.length - subdata))
-            }
-            
-            if newData != nil {
-                UdacityClient.parseJSONWithCompletionHandler(newData!, completionHandler: completionHandler)
             } else {
-                UdacityClient.parseJSONWithCompletionHandler(data, completionHandler: completionHandler)
+                var newData: NSData?
+                newData = nil
+                if subdata > 0 {
+                    newData = data!.subdataWithRange(NSMakeRange(subdata, data!.length - subdata))
+                }
+                if newData != nil {
+                    UdacityClient.parseJSONWithCompletionHandler(newData!, completionHandler: completionHandler)
+                }
+                else {
+                    UdacityClient.parseJSONWithCompletionHandler(data!, completionHandler: completionHandler)
+                }
             }
         }
+        
+        /* Start the request */
         task.resume()
         
         return task
     }
     
     // MARK: - Helpers
-
+    
     /* Helper: Substitute the key for the value that is contained within the method name */
     class func subtituteKeyInMethod(method: String, key: String, value: String) -> String? {
         if method.rangeOfString("{\(key)}") != nil {
@@ -171,13 +147,14 @@ class UdacityClient: NSObject {
         }
     }
     
-    class func parseJSONWithCompletionHandler(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) ->  Void ) {
+    /* Helper: Given raw JSON, return a usable Foundation object */
+    class func parseJSONWithCompletionHandler(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
         
         var parsingError: NSError? = nil
-
-        let parsedResult: AnyObject!
+        
+        let parsedResult: AnyObject?
         do {
-            parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+            parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
         } catch let error as NSError {
             parsingError = error
             parsedResult = nil
@@ -196,42 +173,48 @@ class UdacityClient: NSObject {
         var urlVars = [String]()
         
         for (key, value) in parameters {
-            if (!key.isEmpty) {
+            if(!key.isEmpty) {
                 /* Make sure that it is a string value */
                 let stringValue = "\(value)"
+                
                 /* Escape it */
                 let escapedValue = stringValue.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
+                
                 /* Append it */
                 urlVars += [key + "=" + "\(escapedValue!)"]
             }
+            
+            
         }
+        
         return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
     }
     
     // MARK: - Show error alert
     func showAlert(message: NSError, viewController: AnyObject) {
-        let errorMessage = message.localizedDescription
+        let errMessage = message.localizedDescription
         
-        let alert = UIAlertController(title: nil, message: errorMessage, preferredStyle: .Alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .Default, handler: { (action) -> Void in
+        let alert = UIAlertController(title: nil, message: errMessage, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: { action in
             alert.dismissViewControllerAnimated(true, completion: nil)
         }))
         
         viewController.presentViewController(alert, animated: true, completion: nil)
     }
     
-    // MARK: - Open URL
-    func opernURL(urlString: String) {
+    func openURL(urlString: String) {
         let url = NSURL(string: urlString)
         UIApplication.sharedApplication().openURL(url!)
     }
     
     // MARK: - Shared Instance
+    
     class func sharedInstance() -> UdacityClient {
         
         struct Singleton {
             static var sharedInstance = UdacityClient()
         }
+        
         return Singleton.sharedInstance
     }
 }
