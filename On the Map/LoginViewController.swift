@@ -54,6 +54,7 @@ class LoginViewController: BaseViewController, UITextFieldDelegate {
                 dispatch_async(dispatch_get_main_queue(), {
                     UdacityClient.sharedInstance().showAlert(error!, viewController: self)
                     self.hideActivityIndicator()
+                    self.setFormState(false)
                 })
             }
             else {

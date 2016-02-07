@@ -52,8 +52,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         UdacityClient.sharedInstance().getStudentLocations { users, error in
             if let usersData =  users {
                 dispatch_async(dispatch_get_main_queue(), {
-                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                    appDelegate.usersData = usersData
+//                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//                    appDelegate.usersData = usersData
+                    StudentInformation.usersData = usersData
                     UdacityClient.sharedInstance().createAnnotations(usersData, mapView: self.mapView)
                 })
             } else {

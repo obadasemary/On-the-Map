@@ -52,8 +52,9 @@ class ListViewController: UITableViewController {
         UdacityClient.sharedInstance().getStudentLocations { users, error in
             if let usersData =  users {
                 dispatch_async(dispatch_get_main_queue(), {
-                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-                    appDelegate.usersData = usersData
+//                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+//                    appDelegate.usersData = usersData
+                    StudentInformation.usersData = usersData
                     self.mainTable.reloadData()
                 })
             } else {
@@ -68,8 +69,10 @@ class ListViewController: UITableViewController {
         
         let cell = tableView.dequeueReusableCellWithIdentifier("UserData", forIndexPath: indexPath)
         
-        let firstName = appDelegate.usersData[indexPath.row].firstName
-        let lastName = appDelegate.usersData[indexPath.row].lastName
+//        let firstName = appDelegate.usersData[indexPath.row].firstName
+        let firstName = StudentInformation.usersData[indexPath.row].firstName
+//        let lastName = appDelegate.usersData[indexPath.row].lastName
+        let lastName = StudentInformation.usersData[indexPath.row].lastName
         
         cell.textLabel?.text = "\(firstName) \(lastName)"
         cell.imageView?.image = UIImage(named: "pin")
@@ -78,11 +81,13 @@ class ListViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        UdacityClient.sharedInstance().openURL(appDelegate.usersData[indexPath.row].mediaURL)
+//        UdacityClient.sharedInstance().openURL(appDelegate.usersData[indexPath.row].mediaURL)
+        UdacityClient.sharedInstance().openURL(StudentInformation.usersData[indexPath.row].mediaURL)
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return appDelegate.usersData.count
+//        return appDelegate.usersData.count
+        return StudentInformation.usersData.count
     }
 
 }

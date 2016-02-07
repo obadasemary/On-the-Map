@@ -10,6 +10,9 @@ import Foundation
 import MapKit
 
 struct StudentInformation {
+    
+    static var usersData : [StudentInformation] = [StudentInformation]()
+    
     var firstName = ""
     var lastName = ""
     var latitude : CLLocationDegrees = CLLocationDegrees()
@@ -39,3 +42,4 @@ struct StudentInformation {
         return resultArray
     }
 }
+

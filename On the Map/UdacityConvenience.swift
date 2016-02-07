@@ -14,6 +14,7 @@ import MapKit
 
 extension UdacityClient {
     
+    
     // MARK: - POST Convenience Methods
     
     func userLogin(email: String, password: String, completionHandler: (result: String?, error: NSError?) -> Void) {
@@ -52,7 +53,7 @@ extension UdacityClient {
         
         // make the request
         
-        _ = taskForGETMethod(UdacityClient.RequestToServer.parse, method: Methods.limit, parameters: ["limit":500]) { (result, error) -> Void in
+        _ = taskForGETMethod(UdacityClient.RequestToServer.parse, method: Methods.limit, parameters: ["limit":500, "order":"-updatedAt"]) { (result, error) -> Void in
             if error != nil {
                 completionHandler(result: nil, error: error)
             }

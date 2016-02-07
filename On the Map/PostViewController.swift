@@ -38,6 +38,7 @@ class PostViewController: UIViewController, MKMapViewDelegate {
         
         if (!locationField.text!.isEmpty) {
             getGeocodLocation(locationField.text!)
+            self.hideActivityIndicator()
         } else {
             locationField.becomeFirstResponder()
         }
