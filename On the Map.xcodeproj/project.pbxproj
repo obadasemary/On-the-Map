@@ -17,6 +17,7 @@
 		AF4A984F1C5E200100BC058C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4A984E1C5E200100BC058C /* BaseViewController.swift */; };
 		AFA1F8341C5DE03200CC6DD3 /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA1F8331C5DE03200CC6DD3 /* LoginTextField.swift */; };
 		AFA1F8391C5DE20400CC6DD3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA1F8381C5DE20400CC6DD3 /* User.swift */; };
+		AFB44DAB1C6863BD00A06D72 /* StudentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB44DAA1C6863BD00A06D72 /* StudentData.swift */; };
 		AFBE35461C60CA6300A88A95 /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBE35451C60CA6300A88A95 /* UdacityConvenience.swift */; };
 		AFBE35481C60D3D200A88A95 /* UserInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBE35471C60D3D200A88A95 /* UserInformation.swift */; };
 		AFBE354A1C60D3DF00A88A95 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFBE35491C60D3DF00A88A95 /* StudentInformation.swift */; };
@@ -61,6 +62,7 @@
 		AF4A984E1C5E200100BC058C /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		AFA1F8331C5DE03200CC6DD3 /* LoginTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
 		AFA1F8381C5DE20400CC6DD3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		AFB44DAA1C6863BD00A06D72 /* StudentData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentData.swift; sourceTree = "<group>"; };
 		AFBE35451C60CA6300A88A95 /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
 		AFBE35471C60D3D200A88A95 /* UserInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInformation.swift; sourceTree = "<group>"; };
 		AFBE35491C60D3DF00A88A95 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
@@ -158,6 +160,7 @@
 				AFBE35451C60CA6300A88A95 /* UdacityConvenience.swift */,
 				AFBE35491C60D3DF00A88A95 /* StudentInformation.swift */,
 				AFBE35471C60D3D200A88A95 /* UserInformation.swift */,
+				AFB44DAA1C6863BD00A06D72 /* StudentData.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				AFBE35481C60D3D200A88A95 /* UserInformation.swift in Sources */,
 				AFA1F8391C5DE20400CC6DD3 /* User.swift in Sources */,
 				AF240CC51C578DC000592510 /* AppDelegate.swift in Sources */,
+				AFB44DAB1C6863BD00A06D72 /* StudentData.swift in Sources */,
 				AFE811451C60891700DE3C1B /* UdacityClient.swift in Sources */,
 				AF4A984F1C5E200100BC058C /* BaseViewController.swift in Sources */,
 				AFD0E6E21C637B0100972890 /* ListViewController.swift in Sources */,

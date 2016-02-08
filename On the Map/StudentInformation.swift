@@ -11,7 +11,6 @@ import MapKit
 
 struct StudentInformation {
     
-    static var usersData : [StudentInformation] = [StudentInformation]()
     
     var firstName = ""
     var lastName = ""

@@ -35,12 +35,15 @@ class PostViewController: UIViewController, MKMapViewDelegate {
     }
     
     @IBAction func findOnMapAction(sender: UIButton) {
-        
-        if (!locationField.text!.isEmpty) {
-            getGeocodLocation(locationField.text!)
+
+        self.showActivityIndicator()
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            if (!self.locationField.text!.isEmpty) {
+                self.getGeocodLocation(self.locationField.text!)
+            } else {
+                self.locationField.becomeFirstResponder()
+            }
             self.hideActivityIndicator()
-        } else {
-            locationField.becomeFirstResponder()
         }
     }
     

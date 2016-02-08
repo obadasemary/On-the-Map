@@ -62,6 +62,8 @@ extension UdacityClient {
                     if let usersResult = locations["results"] as? [[String : AnyObject]] {
                         let studentsData = StudentInformation.convertFromDictionaries(usersResult)
                         completionHandler(result: studentsData, error: nil)
+                    } else {
+                        completionHandler(result: nil, error: error)
                     }
                 }
             }

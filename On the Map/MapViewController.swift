@@ -54,7 +54,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 dispatch_async(dispatch_get_main_queue(), {
 //                    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
 //                    appDelegate.usersData = usersData
-                    StudentInformation.usersData = usersData
+                    StudentData.usersData = usersData
                     UdacityClient.sharedInstance().createAnnotations(usersData, mapView: self.mapView)
                 })
             } else {

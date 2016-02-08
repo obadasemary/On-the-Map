@@ -26,8 +26,17 @@ class User {
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        let bodyString = "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}"
-        request.HTTPBody = bodyString.dataUsingEncoding(NSUTF8StringEncoding)
+        let udacityBody: [String:AnyObject] = ["username": username, "password": password]
+        let jsonBody : [String:AnyObject] = ["udacity": udacityBody]
+        
+//        do {
+            request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: [])
+//        } catch {
+//            didComplete(success: false, errorMessage: "Request Error")
+//        }
+        
+//        let bodyString = "{\"udacity\": {\"username\": \"\(username)\", \"password\": \"\(password)\"}}"
+//        request.HTTPBody = bodyString.dataUsingEncoding(NSUTF8StringEncoding)
 
         let session = NSURLSession.sharedSession()
         
