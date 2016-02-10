@@ -63,6 +63,7 @@ extension UdacityClient {
                         let studentsData = StudentInformation.convertFromDictionaries(usersResult)
                         completionHandler(result: studentsData, error: nil)
                     } else {
+                        let error = NSError(domain: "Download Failure", code: 0, userInfo: ["Download Failure" : "Download Failure"])
                         completionHandler(result: nil, error: error)
                     }
                 }

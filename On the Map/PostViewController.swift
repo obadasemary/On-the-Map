@@ -37,12 +37,14 @@ class PostViewController: UIViewController, MKMapViewDelegate {
     @IBAction func findOnMapAction(sender: UIButton) {
 
         self.showActivityIndicator()
+        
+        if (!self.locationField.text!.isEmpty) {
+            self.getGeocodLocation(self.locationField.text!)
+        } else {
+            self.locationField.becomeFirstResponder()
+        }
+        
         dispatch_async(dispatch_get_main_queue()) { () -> Void in
-            if (!self.locationField.text!.isEmpty) {
-                self.getGeocodLocation(self.locationField.text!)
-            } else {
-                self.locationField.becomeFirstResponder()
-            }
             self.hideActivityIndicator()
         }
     }
@@ -64,12 +66,20 @@ class PostViewController: UIViewController, MKMapViewDelegate {
     
     func getGeocodLocation(address : String) {
         
-        showActivityIndicator()
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.showActivityIndicator()
+        }
+        
         let geocoder = CLGeocoder()
         geocoder.geocodeAddressString(address) { (placemarks, error) -> Void in
             
             if error != nil {
                 UdacityClient.sharedInstance().showAlert(error!, viewController: self)
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.hideActivityIndicator()
+                })
+                
             } else {
                 self.mapView.hidden = false
                 self.submitButton.hidden = false
@@ -80,7 +90,11 @@ class PostViewController: UIViewController, MKMapViewDelegate {
                     self.longitude = placemark.location!.coordinate.longitude
                     self.placeMarkerOnMap(placemark)
                 }
-                self.hideActivityIndicator()
+                
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.hideActivityIndicator()
+                })
+                
                 self.changeVisibility(false)
             }
         }
@@ -177,6 +191,7 @@ class PostViewController: UIViewController, MKMapViewDelegate {
                 if error != nil {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         UdacityClient.sharedInstance().showAlert(error!, viewController: self)
+                        self.hideActivityIndicator()
                     })
                 }
             }

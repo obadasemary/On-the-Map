@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct StudentData {
+class StudentData {
     
     static var usersData : [StudentInformation] = [StudentInformation]()
 }
