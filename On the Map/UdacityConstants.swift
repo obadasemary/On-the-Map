@@ -15,7 +15,7 @@ extension UdacityClient {
         static let parseApiKey: String = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
         
         static let UdacityBaseURL: String = "https://www.udacity.com/api/"
-        static let ParseBaseURL: String = "https://api.parse.com/1/classes/StudentLocation"
+        static let ParseBaseURL: String = "https://parse.udacity.com/parse/classes/StudentLocation"
     }
     
     // MARK: - Request to server
